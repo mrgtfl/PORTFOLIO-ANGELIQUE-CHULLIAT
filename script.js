@@ -2,8 +2,17 @@
         NAVBAR
 ======================= */
 const navbar = document.querySelector(".navbar");
+const hero = document.querySelector(".hero");
 
-window.addEventListener("scroll", () => {
+if(navbar && !hero){
+
+    navbar.classList.add("show");
+
+}
+
+if(navbar && hero){
+
+    window.addEventListener("scroll", () => {
 
     if(window.scrollY > 500){
 
@@ -15,7 +24,9 @@ window.addEventListener("scroll", () => {
 
     }
 
-});
+    });
+
+}
 
 /* =======================
         FADE UP AU SCROLL
@@ -29,7 +40,10 @@ const fadeElements = document.querySelectorAll(`
     .looking-for .section-title,
     .looking-for h2,
     .looking-for p,
-    .tag
+    .tag,
+    .experience-header span,
+    .experience-header h1,
+    .experience-header p
 `);
 
 const fadeObserver = new IntersectionObserver((entries) => {
@@ -55,5 +69,51 @@ fadeElements.forEach((element, index) => {
     element.classList.add("fade-up");
     element.style.transitionDelay = `${Math.min(index * 70, 420)}ms`;
     fadeObserver.observe(element);
+
+});
+
+/* =======================
+        TIMELINE
+======================= */
+const timelineItems = document.querySelectorAll(".timeline-item");
+
+const timelineObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+            timelineObserver.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: .25,
+    rootMargin: "0px 0px -80px 0px"
+});
+
+timelineItems.forEach((item, index) => {
+
+    item.style.transitionDelay = `${Math.min(index * 90, 360)}ms`;
+    timelineObserver.observe(item);
+
+});
+
+const missionToggles = document.querySelectorAll(".missions-toggle");
+
+missionToggles.forEach((toggle) => {
+
+    toggle.addEventListener("click", () => {
+
+        const timelineItem = toggle.closest(".timeline-item");
+        const isOpen = timelineItem.classList.toggle("is-open");
+
+        toggle.setAttribute("aria-expanded", isOpen);
+        toggle.textContent = isOpen ? "Masquer les missions" : "Voir les missions";
+
+    });
 
 });
