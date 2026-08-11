@@ -43,7 +43,11 @@ const fadeElements = document.querySelectorAll(`
     .tag,
     .experience-header span,
     .experience-header h1,
-    .experience-header p
+    .experience-header p,
+    .projects-header span,
+    .projects-header h1,
+    .projects-header p,
+    .case-study
 `);
 
 const fadeObserver = new IntersectionObserver((entries) => {
@@ -113,6 +117,22 @@ missionToggles.forEach((toggle) => {
 
         toggle.setAttribute("aria-expanded", isOpen);
         toggle.textContent = isOpen ? "Masquer les missions" : "Voir les missions";
+
+    });
+
+});
+
+const caseToggles = document.querySelectorAll(".case-toggle");
+
+caseToggles.forEach((toggle) => {
+
+    toggle.addEventListener("click", () => {
+
+        const caseStudy = toggle.closest(".case-study");
+        const isOpen = caseStudy.classList.toggle("is-open");
+
+        toggle.setAttribute("aria-expanded", isOpen);
+        toggle.textContent = isOpen ? "Masquer" : "Découvrir";
 
     });
 
