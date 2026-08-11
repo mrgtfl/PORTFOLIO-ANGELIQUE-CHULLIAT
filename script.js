@@ -47,7 +47,16 @@ const fadeElements = document.querySelectorAll(`
     .projects-header span,
     .projects-header h1,
     .projects-header p,
-    .case-study
+    .case-study,
+    .skills-header span,
+    .skills-header h1,
+    .skills-header p,
+    .skills-overview span,
+    .skills-section-heading,
+    .skill-card,
+    .soft-skills span,
+    .tools-grid article,
+    .languages-grid article
 `);
 
 const fadeObserver = new IntersectionObserver((entries) => {
