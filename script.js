@@ -56,7 +56,12 @@ const fadeElements = document.querySelectorAll(`
     .skill-card,
     .soft-skills span,
     .tools-grid article,
-    .languages-grid article
+    .languages-grid article,
+    .education-header span,
+    .education-header h1,
+    .education-header p,
+    .education-item,
+    .education-side section
 `);
 
 const fadeObserver = new IntersectionObserver((entries) => {
